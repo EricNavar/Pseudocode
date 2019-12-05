@@ -1,0 +1,32 @@
+
+//a tree with a single node has a height of 1
+height(root)
+{
+	if root == null
+		return 0
+	if (root->left == null) and (root->right == null)
+		return 1
+	int heightL = 1+height(root->left)
+	int heightR = 1+height(root->right)
+
+	if heightL > heightR
+		return heightL
+	else
+		return heightR
+}
+
+int bal(root)
+{
+	int HL = height(root->left)
+	int HR = height(root->right)
+		
+	if (HL-HR) > 1 return false
+	if (HR-HL) > 1 return false
+
+    if root == null
+        return true
+    if (root->left == null) and (root->right == null)
+        return true
+
+    return (bal(root->left) && bal(root->right))
+}

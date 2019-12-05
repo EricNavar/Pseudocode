@@ -1,0 +1,12 @@
+string binary(int Decimal)
+	if (Decimal==1) 
+		return “1”
+             if  (Decimal==0)
+		return “0”
+	if (Decimal<0)
+		return “-1’
+             String binary = binary(Decimal/2)
+	if (Decimal%2) == 1
+		return binary(DI/2)+”1”
+	else
+		return binary(DI/2)+”0”
