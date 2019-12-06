@@ -1,0 +1,64 @@
+//startV is the start vertex
+BreadthFirstSearch(int startV)
+{   
+    enqueue start
+    mark startV as visited
+    while the queue is not empty
+        Take a vertex, u, out of the queue and visit u
+        for all vertices v adjacent to u 
+            if v has not been visited
+                mark it visited
+                enqueue v
+}
+
+DFS(int v)
+{
+	bool[nodeCount] visited
+    mark all visited elements false
+    list vertices
+	DFS(v, visited, vertices)
+}
+
+DFSHelper(vertex v, bool[] visited, list vertices)
+{
+	vertices.add(v);
+	v.visited = true
+	for each neighbor w of v
+		if visited[w] == false
+			DFSHelper(w, visited, vertices)
+}
+
+/====================================================================
+bool isCyclic() 
+{
+    V = number of vertices in graph
+    // Mark all the vertices as not visited and not part of recursion stack
+    bool visited[V]
+    bool recStack[V]
+    set all values in visited and recStack to false
+    // Call the recursive helper function to detect cycle in different DFS trees
+    //for each vertex v in g
+    for int i from 0 to V - 1
+        if (isCyclicHelper(i, visited, recStack))
+            return true
+    return false
+}
+
+bool isCyclicHelper(int v, bool visited[], bool *recStack) 
+{
+    if(visited[v] == false)
+    {
+        // Mark the current node as visited and part of recursion stack
+        visited[v] = true
+        recStack[v] = true
+        for all vertices i adjacent to v
+        {
+            if ( visited[i] == false AND isCyclicHelper(i, visited, recStack) )
+                return true
+            else if (recStack[i])
+                return true
+        }
+    }
+    recStack[v] = false
+    return false
+}

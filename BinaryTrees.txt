@@ -30,3 +30,51 @@ int bal(root)
 
     return (bal(root->left) && bal(root->right))
 }
+
+inOrderTraversal(Node n)
+{
+	if(n == nullptr)
+		return
+	if (n->left != nullptr)
+		inOrderTraversal(n->left)
+	cout << n->value
+	if (n->right != nullptr)
+		inOrderTraversal(n->right)
+}
+
+//returns node with value
+Node search(Node head, int value)
+{
+	if head == null
+		return null
+	else if head->value == value
+		return head
+	else if head->value < value
+		search(head->right, value)
+	else
+		search(head->left, value)
+}
+
+inOrderPredecessor()
+{
+	if this.left != null
+		return findMax(this.left)
+	else
+		p = this.parent, T = this
+	while(p != null && T == p.left)
+		T = p, p = T.parent
+	if p is null
+		return -1
+	else
+		return p
+}
+
+insertValue(int value)
+{
+	if insertion point is found
+		create new vertex
+	if value < this key
+		go left
+	else
+		go right
+}
