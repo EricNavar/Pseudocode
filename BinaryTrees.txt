@@ -1,36 +1,59 @@
-
-//a tree with a single node has a height of 1
-height(root)
+//for a tree where a single node has a height of 1
+int height(root)
 {
 	if root == null
 		return 0
-	if (root->left == null) and (root->right == null)
+	if (root->left == null) AND (root->right == null)
 		return 1
-	int heightL = 1+height(root->left)
-	int heightR = 1+height(root->right)
+	heightL = 1+height(root->left)
+	heightR = 1+height(root->right)
+	return max(heightL,heightR)
+}
 
-	if heightL > heightR
-		return heightL
-	else
-		return heightR
+//for a tree where a single node has a height of 0, the following two functions are used
+int height(root)
+{
+	if root == null
+		return 0
+	return heightHelper(root, 0) - 1
+}
+
+int heightHelper(root)
+{
+	if root == null
+		return 0
+	if (root->left == null) AND (root->right == null)
+		return 1
+	heightL = 1 + heightHelper(root->left)
+	heightR = 1 + heightHelper(root->right)
+	return max(heightL,heightR)
 }
 
 int bal(root)
 {
+	if root == null
+        return true
+    if (root->left == null) AND (root->right == null)
+        return true
+
 	int HL = height(root->left)
 	int HR = height(root->right)
-		
-	if (HL-HR) > 1 return false
-	if (HR-HL) > 1 return false
+	if absoluteValue(HL-HR) > 1
+		return false
 
-    if root == null
-        return true
-    if (root->left == null) and (root->right == null)
-        return true
-
-    return (bal(root->left) && bal(root->right))
+    return (bal(root->left) AND bal(root->right))
 }
 
+void inOrderTraversal(treeNode root)
+{
+	if (root == nullptr)
+		return
+	inOrderTraversal(root->left)
+	cout << “ “ << root->item
+	inOrderTraversal(root->right)
+}
+
+//this one doesn't call recursion on null nodes
 inOrderTraversal(Node n)
 {
 	if(n == nullptr)
@@ -55,26 +78,81 @@ Node search(Node head, int value)
 		search(head->left, value)
 }
 
+Object BSTSearch(int value, BSTNode root)
+{	
+	if (root == null)
+		return null
+	if (root->value == value)
+		return root->value
+	if (value < root->value)
+		BSTSearch(value, root->left)
+	else
+		BSTSearch(value, root->right)
+}
+
 inOrderPredecessor()
 {
-	if this.left != null
-		return findMax(this.left)
+	if this->left != null
+		return findMax(this->left)
 	else
-		p = this.parent, T = this
-	while(p != null && T == p.left)
-		T = p, p = T.parent
+	{
+		parent = this->parent
+		T =/ this
+	}
+	while(p != null AND T == p.left)
+	{
+		T = p
+		p = T.parent
+	}
 	if p is null
 		return -1
 	else
 		return p
 }
 
-insertValue(int value)
+insertValue(root, value)
 {
-	if insertion point is found
-		create new vertex
-	if value < this key
-		go left
+    if (root == NULL) 
+       root = new Node(value)  
+    if (key->value) 
+       return search(root->left, value); 
+    return search(root->right, value); 
+}
+
+//in plain english
+//recursive
+removeValue()
+{
+	search for v
+	if v is a leaf
+		delete leaf v
+	else if v has 1 child
+		replace v with its child
 	else
-		go right
+		replace v with successor
+}
+
+//looks more like code
+//recursive
+removeValue()
+{
+	if the root is null 
+		The item is not in tree — return null. 
+	Compare the item to the data at the local root. 
+	if the item is less than the data at the local root 
+		Return the result of deleting from the left subtree. 
+	else if the item is greater than the local root 
+		Return the result of deleting from the right subtree. 
+	else if The item is in the local root 
+		Store the data in the local root in del etedReturn. 
+		if the local root has no children 
+			Set the parent of the local root to reference null. 
+		else if the local root has one child 
+			Set the parent of the local root to reference that child.
+		else // Find the inorder predecessor 
+			if the left child has no right child it is the inorder predecessor 
+				Set the parent of the local root to reference the left child. 
+			else 
+				Find the rightmost node in the right subtree of the left child. 
+				Copy its data into the local root's data and remove it by setting its parent to reference its left child.
 }

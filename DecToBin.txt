@@ -1,12 +1,27 @@
-string binary(int Decimal)
-	if (Decimal==1) 
-		return “1”
-             if  (Decimal==0)
-		return “0”
-	if (Decimal<0)
-		return “-1’
-             String binary = binary(Decimal/2)
-	if (Decimal%2) == 1
-		return binary(DI/2)+”1”
+//recursively turn a decimal integer into a binary string
+string binary(int dec)
+{
+	if (dec == 1)
+		return "1"
+    if  (dec == 0)
+		return "0"
+	if (dec < 0)
+		return "-1"
+	if (dec & 1 == 1)
+		return binary(dec>>1) + "1"
 	else
-		return binary(DI/2)+”0”
+		return binary(dec>>1) + "0"
+}
+
+string decToBin(int n)
+{
+	string result = ""
+	while (n > 0)
+	{
+		char c = '0'
+		c += (n & 1)
+		result = c + result
+		n >>= 1
+	}
+	return result
+}
