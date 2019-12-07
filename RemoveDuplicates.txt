@@ -1,0 +1,15 @@
+//takes a sorted list as input and removes any duplicates from the list
+removeDuplicates(list)
+{
+	node curr = list->head
+	if (curr==null) or (curr->next == null)
+		return
+
+	while (curr->next != null)
+		if (curr->value == curr->next->value)
+			node toDelete = curr->next
+			curr->next = curr->next->next
+			delete toDelete
+		else
+			curr=curr->next
+}

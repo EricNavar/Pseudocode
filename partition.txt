@@ -1,0 +1,27 @@
+//geeks for geeks
+partition (arr[], low, high)
+{
+    pivot = arr[high];  
+    down = (low - 1)
+
+    for (up = low; up < high; up++)
+        // If current element is smaller than the pivot
+        if (arr[up] < pivot)
+            down++;
+            swap arr[down] and arr[up]
+    swap arr[down + 1] and arr[high])
+    return (down + 1)
+}
+
+//my way
+partition(first, last, pivot)
+{
+    left = first
+    right = last - 1
+    while left < right
+        while A[left] < pivot
+            left++
+        while right > pivot
+            right--
+        swap(left,right)
+}

@@ -1,0 +1,22 @@
+//using stack
+isPalindrome(string s)
+{
+    Stack stk
+    for (i = 0; i < inputString.length; i++)
+        stk.push(inputString.charAt(i))
+    String reverseString = ""
+    while (!stk.isEmpty())
+        reverseString = reverseString + stk.pop()
+    return inputString.equals(reverseString)
+}
+
+//using recursion
+isPalindrome(string s)
+{
+    if ( s.size == 1 || s.size == 0) 
+	    return true
+    if ( s.at(0) == s.at(s.size()-1) ) 
+        return isPalindrome(s.substr(1, s.size()-2))
+    else 
+	    return false
+}
