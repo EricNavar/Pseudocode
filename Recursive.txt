@@ -1,0 +1,32 @@
+int findSumDigits(int num)
+{
+    //base case
+    if num < 10
+        return num
+
+    //recursive case
+    int thisNum = num%10
+    return thisNum+findSumDigits(num/10)
+}
+
+//Given a starting number and an increment, print a pattern that goes from
+//starting number to the first negative number, then back up to the starting number
+pattern(int number, int increment, int currentNumber, bool goingUp)
+{
+    //base case
+    if (currentNumber == number)
+        print number
+        return
+
+    //recursive case(s)
+    print currentNumber
+    //going down
+    if (!goingUp)
+        if (currentNumber) <=0
+                return pattern(number, currentNumber+number, true)
+        else
+                return pattern(number, currentNumber-number, false)
+    //going up
+    else
+        return pattern(number, currentNumber+number, true)
+}
