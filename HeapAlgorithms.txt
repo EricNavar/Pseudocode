@@ -1,0 +1,87 @@
+//NOTE: all functions consider heaps to start at 0
+BuildHeap(int[] heap)
+{
+    n = heap.length
+    for int i = n/2 to 0
+        heapify(heap, i)
+}
+
+//min heap
+heapify(int[] heap, int index)
+{
+	n = heap.length
+    //find the largest out of the value at index, its left child, and its right child
+    maxIndex = index
+    left = 2 * index + 1
+    right = 2 * index + 2
+
+    if (left < n && heap[left] > heap[maxIndex])
+        maxIndex = left
+
+    if (right < n && heap[right] > heap[maxIndex])
+        maxIndex = right
+
+    //if maxIndex is not root
+    if (maxIndex != index)
+        swap(heap[index], heap[maxIndex])
+        //recursively heapify the affected sub-tree
+        heapify(heap, maxIndex)
+}
+
+void deleteRoot(int arr[], int n)
+{
+    // Replace root with last element
+    arr[0] = arr[size--]
+    // heapify the new root node
+    heapify(arr, size, 0)
+}
+
+void insert(value v)
+{
+    size++
+    newPos = percolateUp(size-1,v)
+    Heap[newPos] = v
+}
+
+percolateUp(int hole, int val)
+{
+    while (hole > 0 AND val < heap[(hole-1)/2])
+        heap[hole] = heap[(hole-1)/2]
+        hole = (hole-1)/2
+    return hole
+}
+
+//================================
+//min heap, so smallest numbers on top
+isHeap(int[] arr)
+{
+    return isHeapHelper(arr,arr.size,0)
+}
+
+//max heap
+isHeapHelper(int[] arr, size, index)
+{
+    left = 2*index + 1
+    right = 2*index + 2
+    if(!(left < size AND arr[left] > arr[index]) OR !(right < size AND arr[right] > arr[index]))
+        return false
+    return isHeapHelper(arr, size, left) AND isHeapHelper(arr, size, right)
+}
+
+//================================
+
+//nonrecursive
+//max heap
+bool isHeap(vector<int> v)
+{
+    int n = v.size
+    // Start from root and go till the last internal node 
+    for (int i = 0; i <= (n-2)/2; i++)
+        // If left child is greater
+        if (v[2*i + 1] > v[i])
+            return false
+        // If right child exists and is greater
+        if (2*i+2 < n && v[2*i+2] > v[i])
+            return false
+    return true
+}
