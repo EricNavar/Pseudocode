@@ -1,40 +1,73 @@
 //startV is the start vertex
 BreadthFirstSearch(int startV)
-{   
+{
     enqueue start
     mark startV as visited
     while the queue is not empty
-    {
         Take a vertex, u, out of the queue and visit u
         for all vertices v adjacent to u 
-        {
             if v has not been visited
-            {
                 mark v visited
                 enqueue v
-            }
-        }
-    }
 }
+
+BreadthFirstSearch(int startV)
+{
+    enqueue start
+    mark startV as visited
+    while the queue is not empty
+        Take a vertex, u, out of the queue and visit u
+        for all vertices v adjacent to u 
+            if v has not been visited
+                mark v visited
+                enqueue v
+}
+
+//shortest path between 2 vertices in an unweighted graph
+int shortestPath(int from, int to)
+{
+    //distance is an array where distance[v] is
+    //the distance from the start vertex to v
+    //if the distance is -1, the vertex has not yet been visited
+    //if the distance of a vertex is not -1, it will not be enqueued again
+    set all values of distance to -1
+    distance[from] = 0
+    Q.enqueue(from)
+    while Q is not empty
+        v = Q.dequeue()
+        for each vertex w adjacent to v
+            if distance[w] = -1
+                distance[w] = distance[v] + 1
+                //if we want to record paths
+                previous[w] = v
+                Q.enqueue(w)
+    //length of the path
+    return distance[to]
+
+    //to get the exact path from start to finish
+    //start at vertex "to" and keep going to the previously taken vertex
+    iter = to
+    string path = string(to)
+    while(iter != from)
+        path = string(previous[iter]) + path
+        iter = prev[iter]
+    print(path)
+}
+
 //================================
 DFS(int v)
 {
-	bool[nodeCount] visited
+    bool[nodeCount] visited
     mark all visited elements false
     list vertices = empty list
-	DFS(v, visited, vertices)
+    DFS(v, visited, vertices)
 }
 
 DFSHelper(vertex v, bool[] visited, list vertices)
 {
-	vertices.add(v)
-	v.visited = true
-	for each neighbor w of v
-		if visited[w] == false
-			DFSHelper(w, visited, vertices)
-}
-//================================
-int shortestPath(int from, int to)
-{
-    
+    vertices.add(v)
+    v.visited = true
+    for each neighbor w of v
+        if visited[w] == false
+            DFSHelper(w, visited, vertices)
 }

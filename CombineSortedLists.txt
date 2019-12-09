@@ -1,0 +1,17 @@
+combine(List l1, List l2)
+{
+    //iterator for l1, l2, and combined list
+    iter1 = iter2 = iterC = 0
+    //create list of size l1.size + l2.size
+    List combined
+    while (iter1 < l1.size AND iter2 < l2.size)
+        if(l1[iter1] < l2[iter2])
+            combined[iterC++] = l1[iter1++]
+        else
+            combined[iterC++] = l2[iter2++]
+    //if there are leftovers in l1, put them all in the combined list
+    while(iter1 < l1.size)
+        combined[iterC++] = l1[iter1++]
+    while(iter2 < l2.size)
+        combined[iterC++] = l2[iter2++]
+}

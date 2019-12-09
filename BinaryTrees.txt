@@ -1,113 +1,111 @@
 //for a tree where a single node has a height of 1
 int height(root)
 {
-	if root == null
-		return 0
-	if (root->left == null) AND (root->right == null)
-		return 1
-	heightL = 1+height(root->left)
-	heightR = 1+height(root->right)
-	return max(heightL,heightR)
+    if root == null
+        return 0
+    if (root->left == null) AND (root->right == null)
+        return 1
+    heightL = 1+height(root->left)
+    heightR = 1+height(root->right)
+    return max(heightL,heightR)
 }
 
+/=================================
 //for a tree where a single node has a height of 0, the following two functions are used
 int height(root)
 {
-	if root == null
-		return 0
-	return heightHelper(root, 0) - 1
+    if root == null
+        return 0
+    return heightHelper(root, 0) - 1
 }
 
 int heightHelper(root)
 {
-	if root == null
-		return 0
-	if (root->left == null) AND (root->right == null)
-		return 1
-	heightL = 1 + heightHelper(root->left)
-	heightR = 1 + heightHelper(root->right)
-	return max(heightL,heightR)
+    if root == null
+        return 0
+    if (root->left == null) AND (root->right == null)
+        return 1
+    heightL = 1 + heightHelper(root->left)
+    heightR = 1 + heightHelper(root->right)
+    return max(heightL,heightR)
 }
+/=================================
 
 int bal(root)
 {
-	if root == null
+    if root == null
         return true
     if (root->left == null) AND (root->right == null)
         return true
 
-	int HL = height(root->left)
-	int HR = height(root->right)
-	if absoluteValue(HL-HR) > 1
-		return false
+    int HL = height(root->left)
+    int HR = height(root->right)
+    if absoluteValue(HL-HR) > 1
+        return false
 
     return (bal(root->left) AND bal(root->right))
 }
 
 void inOrderTraversal(treeNode root)
 {
-	if (root == nullptr)
-		return
-	inOrderTraversal(root->left)
-	cout << “ “ << root->item
-	inOrderTraversal(root->right)
-}
+    if (root == nullptr)
+        return
+    inOrderTraversal(root->left)
+    print(“ “ + root->item)
+    inOrderTraversal(root->right)
+    }
 
 //this one doesn't call recursion on null nodes
 inOrderTraversal(Node n)
 {
-	if(n == nullptr)
-		return
-	if (n->left != nullptr)
-		inOrderTraversal(n->left)
-	cout << n->value
-	if (n->right != nullptr)
-		inOrderTraversal(n->right)
+    if(n == nullptr)
+        return
+    if (n->left != nullptr)
+        inOrderTraversal(n->left)
+    print(n->value)
+    if (n->right != nullptr)
+        inOrderTraversal(n->right)
 }
 
 //returns node with value
 Node search(Node head, int value)
 {
-	if head == null
-		return null
-	else if head->value == value
-		return head
-	else if head->value < value
-		search(head->right, value)
-	else
-		search(head->left, value)
+    if head == null
+        return null
+    else if head->value == value
+        return head
+    else if head->value < value
+        search(head->right, value)
+    else
+        search(head->left, value)
 }
 
-Object BSTSearch(int value, BSTNode root)
-{	
-	if (root == null)
-		return null
-	if (root->value == value)
-		return root->value
-	if (value < root->value)
-		BSTSearch(value, root->left)
-	else
-		BSTSearch(value, root->right)
-}
-
-inOrderPredecessor()
+//returns null if not found
+BSTSearch(int value, BSTNode root)
 {
-	if this->left != null
-		return findMax(this->left)
-	else
-	{
-		parent = this->parent
-		T =/ this
-	}
-	while(p != null AND T == p.left)
-	{
-		T = p
-		p = T.parent
-	}
-	if p is null
-		return -1
-	else
-		return p
+    if (root == null)
+        return null
+    if (root->value == value)
+        return root->value
+    if (value < root->value)
+        BSTSearch(value, root->left)
+    else
+        BSTSearch(value, root->right)
+}
+
+return null if does not exist
+node inOrderPredecessor()
+{
+    if this->left != null
+        //return the rightmost descendant of the left child
+        return findMax(this.left)
+    else
+        par = this->parent
+        curr = this
+        while(par != null && curr == par->left)
+            curr = par
+            par = par->parent
+        return par
 }
 
 insertValue(root, value)
@@ -123,36 +121,36 @@ insertValue(root, value)
 //recursive
 removeValue()
 {
-	search for v
-	if v is a leaf
-		delete leaf v
-	else if v has 1 child
-		replace v with its child
-	else
-		replace v with successor
+    search for v
+    if v is a leaf
+        delete leaf v
+    else if v has 1 child
+        replace v with its child
+    else
+        replace v with successor
 }
 
 //looks more like code
 //recursive
 removeValue()
 {
-	if the root is null 
-		The item is not in tree — return null. 
-	Compare the item to the data at the local root. 
-	if the item is less than the data at the local root 
-		Return the result of deleting from the left subtree. 
-	else if the item is greater than the local root 
-		Return the result of deleting from the right subtree. 
-	else if The item is in the local root 
-		Store the data in the local root in del etedReturn. 
-		if the local root has no children 
-			Set the parent of the local root to reference null. 
-		else if the local root has one child 
-			Set the parent of the local root to reference that child.
-		else // Find the inorder predecessor 
-			if the left child has no right child it is the inorder predecessor 
-				Set the parent of the local root to reference the left child. 
-			else 
-				Find the rightmost node in the right subtree of the left child. 
-				Copy its data into the local root's data and remove it by setting its parent to reference its left child.
+    if the root is null 
+        The item is not in tree — return null. 
+    Compare the item to the data at the local root. 
+    if the item is less than the data at the local root 
+        Return the result of deleting from the left subtree. 
+    else if the item is greater than the local root 
+        Return the result of deleting from the right subtree. 
+    else if The item is in the local root 
+        Store the data in the local root in del etedReturn. 
+        if the local root has no children 
+            Set the parent of the local root to reference null. 
+        else if the local root has one child 
+            Set the parent of the local root to reference that child.
+        else // Find the inorder predecessor 
+            if the left child has no right child it is the inorder predecessor 
+                Set the parent of the local root to reference the left child. 
+            else 
+                Find the rightmost node in the right subtree of the left child. 
+                Copy its data into the local root's data and remove it by setting its parent to reference its left child.
 }
