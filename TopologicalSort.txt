@@ -3,32 +3,24 @@ TopologicalSort()
     //sorted list will go in L
     List L
     Queue Q
-    Set V = vertices in graph
     //if a vertex is in L it will also be in this set
     Set sortedVertices = {}
 
-    for each vertex in V
+    for each vertex v in graph
         count incoming edges and save the values 
-
-    find vertex with in-degree of 0
-    if there are none
-        return null
-    else
-        add the vertices to Q
-
+        if v has an in-degree of 0
+            enqueue v to Q
     while Q is not empty
-    {
         dequeue a vertex v from Q
-        add v to L
+        append v to L
         add v to sortedVertices
         for each vertex u adjacent to v
             subtract 1 from incoming edges
             if incoming is now 0 
                 add u to Q
-    }
 
     //if there is no circuit
-    if sortedVertices and V contain the same vertices
+    if sortedVertices contains all vertices in the graph
         return L
     else
         return null

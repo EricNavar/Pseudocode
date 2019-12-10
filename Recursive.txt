@@ -30,3 +30,15 @@ pattern(int number, int increment, int currentNumber, bool goingUp)
     else
         return pattern(number, currentNumber+number, true)
 }
+
+//countOccurrences of the digit 8 in a non-negative number
+//computational complexity of log base 10, or O(log n)
+int count8(int num)
+{
+    if (num < 0)
+        return -1
+    if (num < 10)
+        return (num == 8)
+    result = (num%10 == 8)
+    return result + count8(num/10)
+}
