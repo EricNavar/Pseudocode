@@ -1,0 +1,212 @@
+deqDP()
+{
+	//if n <= 1 return 1
+	//if n <= 3 return 2
+	var arr[]
+	arr[0] = arr[1] = 1
+	arr[2] = arr[3] = 2
+	for int i = 4; i <= n; i++
+		arr[i] = arr[i-3] + arr[i-1]
+	return arr[n]
+}
+//=========
+optimal structure and overlapping subproblem
+1. optimal structure is kind of like the base cases
+2. overlapping is kind of like the recursive
+//=========
+Greatest commong factor
+//==========
+2 parts to a greedy algorithm
+1) add the next smallest weight
+2) objective function, next best step.
+	ex: get the next smallest edge
+
+//=============
+Dijkstra()
+	for (each vertex V in Graph)
+		dist[v] = infinity
+		prev[v] = null
+
+	dist[source] = 0
+	set q = set of all nodes in graph
+	while q is not empty
+		u = node will smallest distance
+		remove u from q
+		for each neighbor v of u
+			d = dist[u] + distance from u to v
+			if d < dist[v]
+				dist[v] = d
+				prev[v] = u
+	return prev
+end Dijkstra
+
+//prim's, kruskal's, topological
+//complexity of dijstas is v squared log e
+
+//=====================================
+
+
+TopologicalSort()
+{
+	List T
+	Stack z
+	//the indegree of each vertex is 0
+	indegrees = dictionary maps vertices to 0
+	for each vertex V in the graph
+		if indegrees[v] == 0
+			add v to z
+	while z is not empty
+		v = z.remove
+		append v to T
+		for each u adjacent to v
+			decrement indegrees[u]
+				add u to z
+}
+
+//================
+//time complexity is O(n)
+//DFS
+	//list of the traversed nodes
+	List<vertex> DFS
+	Stack stack
+	stack.push(source)
+	while (stack is not empty)
+		current = stack.top
+		stack.pop
+		if current has not been visited
+			mark current as visited
+			add current to the end of the list
+		for each node v adjacent to current
+			if v has not been visited
+				stack.push(v)
+	return DFS
+end DFS
+
+//===============================
+MinimumSpanningTree()
+{
+	
+}
+
+//==================
+level-order traversal
+//============
+print bst in reverse
+//==================
+validate a binary search tree
+isBinaryTree()
+{
+	return helper(head, int_min, int max)
+}
+
+helper(root, minimum, maximum)
+{
+	if (root == null)
+		return true
+	if !(root->value > min && root->value < max)
+		return false
+	return helper(root->left, min, root->val) && helper(root->right, root->val, max)
+}
+//===================
+binary tree/linked list
+
+connect(root)
+{
+	Queue<nodes> q
+	if root is not null
+		push root onto q
+		while q is not empty
+			size = q.size
+			for int i from 0 to size - 1
+			//if empty, pop returns null
+			node n = q.pop
+			if (i == size - 1)
+				n.next = q.front()
+			if n.next == null
+				if (n.left != null)
+					q.push(n.left)
+				if (n.right != null)
+					q.push(n.right)
+}
+
+
+//==========================
+//unsorted
+//O(n^2)
+removeDuplicates()
+{
+	node curr = list->head
+	if curr = null or curr->next == null
+		return
+	while curr->next != null
+		node executioner = curr
+		while executioner->next != null
+			if executioner->next == curr
+				murder = executioner->next
+				executioner->next = executioner->next->next
+				delete murder
+			else
+				executioner = executioner->next
+		curr = curr->next
+}
+
+//================================
+find middle element in one pass of a linked list
+findMiddle()
+{
+	node slow = list->head
+	node fast = list->head
+	if (slow == null OR slow->next == null)
+		return slow
+	while fast != null or fast->next != null
+		slow = slow->next
+		fast = fast->next->next
+	return slow
+}
+
+//================================
+
+findKthLargest(int[] arr, k)
+{
+	MaxHeap heap
+	for each element in array
+		insert element into heap
+	int count = 1
+	element curr = heap.pop()
+	while(count != k)
+		temp = heap.pop()
+		if (temp != curr)
+			curr = temp
+			count++
+	return curr
+}
+
+//==================================
+print the frequencies of every element in string s
+
+printfrequency(string s)
+{
+	hashmap<char, int> hashmap;
+	for(char c in s)
+		hashmap[c]++
+	for(auto iter = hashmap.begin(); iter != hashmap.end; iter++)
+		print iter->first + " " + iter->second
+}
+
+//====================================
+KthMostFrequentElement(int[] arr, k)
+{
+	//create frequence hashmap
+	//heapify hashmap based on frequency
+	//iterate through heap, these are kth, largest
+	hashmap<char,int> map
+	for(char c : s)
+		map[c]++;
+	//sorts in heap based on key's value
+	priorityQueue<pair<char,int>, cmp> pq
+	for auto it = map.begin(); it!= map.end(); it++
+		if pq.size > k
+			pq.pop()
+	while(!pq.empty())
+		print pq.first + ":" + pq.second
+}
