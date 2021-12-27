@@ -1,7 +1,9 @@
-deqDP()
+seqDP()
 {
-	//if n <= 1 return 1
-	//if n <= 3 return 2
+	//the program will work without the first 2 lines
+	//but it's good for the grader to make it explicit
+	if n <= 1 return 1
+	if n <= 3 return 2
 	var arr[]
 	arr[0] = arr[1] = 1
 	arr[2] = arr[3] = 2
@@ -14,7 +16,14 @@ optimal structure and overlapping subproblem
 1. optimal structure is kind of like the base cases
 2. overlapping is kind of like the recursive
 //=========
-Greatest commong factor
+//Greatest commong factor
+GCD(x, y)
+{
+	if y = 0
+		return x
+	else
+		return GCD(y, x%y)
+}
 //==========
 2 parts to a greedy algorithm
 1) add the next smallest weight
@@ -28,10 +37,10 @@ Dijkstra()
 		prev[v] = null
 
 	dist[source] = 0
-	set q = set of all nodes in graph
-	while q is not empty
-		u = node will smallest distance
-		remove u from q
+	set s = set of all nodes in graph
+	while s is not empty
+		u = node will smallest distance not in s
+		remove u from s
 		for each neighbor v of u
 			d = dist[u] + distance from u to v
 			if d < dist[v]
@@ -40,11 +49,20 @@ Dijkstra()
 	return prev
 end Dijkstra
 
-//prim's, kruskal's, topological
 //complexity of dijstas is v squared log e
 
 //=====================================
+Prim's algorithm
+T := ∅.
+Pick any vertex in G and add it to T.
 
+For j = 1 to n-1
+	Let C be the set of edges with one endpoint inside T and one endpoint outside T.
+	Let e be a minimum weight edge in C.
+	Add e to T.
+	Add the endpoint of e not already in T to T.
+End-for
+//====================================
 
 TopologicalSort()
 {
@@ -65,20 +83,22 @@ TopologicalSort()
 
 //================
 //time complexity is O(n)
-//DFS
+DFS(source)
 	//list of the traversed nodes
 	List<vertex> DFS
 	Stack stack
 	stack.push(source)
+	mark source as visited
+	add source to list
 	while (stack is not empty)
 		current = stack.top
 		stack.pop
 		if current has not been visited
 			mark current as visited
 			add current to the end of the list
-		for each node v adjacent to current
-			if v has not been visited
-				stack.push(v)
+			for each node v adjacent to current
+				if v has not been visited
+					stack.push(v)
 	return DFS
 end DFS
 
@@ -120,35 +140,14 @@ connect(root)
 			for int i from 0 to size - 1
 			//if empty, pop returns null
 			node n = q.pop
-			if (i == size - 1)
-				n.next = q.front()
-			if n.next == null
-				if (n.left != null)
-					q.push(n.left)
-				if (n.right != null)
-					q.push(n.right)
+			n.next = q.front()
+			if (n.left != null)
+				q.push(n.left)
+			if (n.right != null)
+				q.push(n.right)
 }
-
-
-//==========================
-//unsorted
-//O(n^2)
-removeDuplicates()
-{
-	node curr = list->head
-	if curr = null or curr->next == null
-		return
-	while curr->next != null
-		node executioner = curr
-		while executioner->next != null
-			if executioner->next == curr
-				murder = executioner->next
-				executioner->next = executioner->next->next
-				delete murder
-			else
-				executioner = executioner->next
-		curr = curr->next
-}
+if (i == size - 1)
+if n.next == null
 
 //================================
 find middle element in one pass of a linked list
@@ -156,6 +155,7 @@ findMiddle()
 {
 	node slow = list->head
 	node fast = list->head
+	//if there are 0 or 1 elements
 	if (slow == null OR slow->next == null)
 		return slow
 	while fast != null or fast->next != null
@@ -165,7 +165,6 @@ findMiddle()
 }
 
 //================================
-
 findKthLargest(int[] arr, k)
 {
 	MaxHeap heap
@@ -182,8 +181,7 @@ findKthLargest(int[] arr, k)
 }
 
 //==================================
-print the frequencies of every element in string s
-
+//print the frequencies of every element in string s
 printfrequency(string s)
 {
 	hashmap<char, int> hashmap;
@@ -203,10 +201,17 @@ KthMostFrequentElement(int[] arr, k)
 	for(char c : s)
 		map[c]++;
 	//sorts in heap based on key's value
-	priorityQueue<pair<char,int>, cmp> pq
+	priorityQueue<pair<char,int>> pq
 	for auto it = map.begin(); it!= map.end(); it++
 		if pq.size > k
 			pq.pop()
-	while(!pq.empty())
+	if(!pq.empty())
 		print pq.first + ":" + pq.second
+}
+
+//another approach by sorting the array
+KthMostFrequentElement(int[] arr, k)
+{
+	sort(arr)
+
 }

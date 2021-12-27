@@ -28,7 +28,7 @@ Kruskals(Graph g)
     //DisjointSets has algorithms for union and find
     DisjointSets d
     vector edges = all edges in g
-    sort edges by weight
+    sort edges by weight in ascending order
     for Edge e in edges
         //if e will not form a cycle then add it
         if (d.find(e.to) != d.find(e.from))
@@ -36,7 +36,7 @@ Kruskals(Graph g)
             d.union(e.from, e.to)
 }
 
-/====================================================================
+/========================================
 bool isCyclic()
 {
     V = number of vertices in graph

@@ -1,26 +1,18 @@
-//startV is the start vertex
-BreadthFirstSearch(int startV)
+// add all nodes to a list using breadth first search
+BreadthFirstSearch(int source)
 {
-    enqueue start
-    mark startV as visited
+    List L
+    Queue q
+    q.enqueue(source)
+    mark source as visited
     while the queue is not empty
-        Take a vertex, u, out of the queue and visit u
+        u = q.top()
+        q.dequeue()
+        L.add(u)
         for all vertices v adjacent to u 
             if v has not been visited
                 mark v visited
-                enqueue v
-}
-
-BreadthFirstSearch(int startV)
-{
-    enqueue start
-    mark startV as visited
-    while the queue is not empty
-        Take a vertex, u, out of the queue and visit u
-        for all vertices v adjacent to u 
-            if v has not been visited
-                mark v visited
-                enqueue v
+                q.enqueue(v)
 }
 
 //shortest path between 2 vertices in an unweighted graph
@@ -34,13 +26,13 @@ int shortestPath(int from, int to)
     distance[from] = 0
     Q.enqueue(from)
     while Q is not empty
-        v = Q.dequeue()
-        for each vertex w adjacent to v
-            if distance[w] = -1
-                distance[w] = distance[v] + 1
+        current = Q.dequeue()
+        for each vertex v adjacent to current
+            if distance[v] = -1
+                distance[v] = distance[current] + 1
                 //if we want to record paths
-                previous[w] = v
-                Q.enqueue(w)
+                previous[v] = current
+                Q.enqueue(v)
     //length of the path
     return distance[to]
 
@@ -71,3 +63,6 @@ DFSHelper(vertex v, bool[] visited, list vertices)
         if visited[w] == false
             DFSHelper(w, visited, vertices)
 }
+
+//==============================
+//nonrecursive DFS

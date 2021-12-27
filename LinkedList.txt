@@ -78,21 +78,26 @@ search(int value)
     else
         return -1
 }
-
+//===============================
 //reverse a singly-linked list
-//first call would be reverse(1,null)
-int reverse(Node* node, Node* previous)
+//return new head
+int reverse(head)
 {
-    //Base cases
-    //zero items
+    return reverseHelper(head,null)
+}
+
+int reverseHelper(Node* node, Node* previous)
+{
+    //Base case: zero items
     if node == null 
         return null
-    //one item (or last item)
+    //Base case: one item
     if node->next == null
         node->next = previous
         return node
     //Recursive case
     Node* next = node->next
     node->next = previous
-    reverse(next, node)
+    reverseHelper(next, node)
 }
+//================================

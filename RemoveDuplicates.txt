@@ -1,4 +1,4 @@
-//takes a sorted list as input and removes any duplicates from the list
+//takes a sorted singly-linked list as input and removes any duplicates from the list
 removeDuplicates(list)
 {
     node curr = list->head
@@ -12,4 +12,25 @@ removeDuplicates(list)
             delete toDelete
         else
             curr=curr->next
+}
+
+//=======================
+
+//remove duplicate nodes in an unsorted singly-linked list
+//O(n^2)
+removeDuplicates()
+{
+	node curr = list->head
+	if curr = null or curr->next == null
+		return
+	while curr->next != null
+		node executioner = curr
+		while executioner->next != null
+			if executioner->next == curr
+				murder = executioner->next
+				executioner->next = executioner->next->next
+				delete murder
+			else
+				executioner = executioner->next
+		curr = curr->next
 }

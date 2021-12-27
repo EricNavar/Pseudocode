@@ -1,11 +1,11 @@
 SelectionSort(int[] arr)
 {
     n = arr.length
-    for i from 1 to n - 1
+    for i from 0 to n - 2
         min_index = i
         for j from i + 1 to n - 1
             if arr[j] < arr[min_index]
-                min = j;
+                min_index = j
         swap (arr[min_index], arr[i])
 }
 
@@ -27,7 +27,7 @@ InsertionSort(int[] arr)
         key = arr[i]
 
         j = i-1
-        while j >= 0 and key < arr[j]
+        while j >= 0 and arr[j] > key
             arr[j + 1] = arr[j]
             j--
         arr[j + 1] = key 

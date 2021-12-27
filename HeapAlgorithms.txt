@@ -33,7 +33,7 @@ void deleteRoot(int arr[], int n)
     // Replace root with last element
     arr[0] = arr[size--]
     // heapify the new root node
-    heapify(arr, size, 0)
+    heapify(arr, 0)
 }
 
 void insert(value v)
